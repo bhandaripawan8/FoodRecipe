@@ -1,13 +1,20 @@
-import { useState } from 'react'
-
 import './App.css'
+import { Routes, Route} from 'react-router-dom';
+import Home from './Pages/Home/Home'
+import Navbar from './Components/Navbar'
+import Favourites from './Pages/Favourites/Favourites'
+import Details from './Pages/Details/Details'
 
 function App() {
 
-
   return (
     <>
-    <h2 className='text-3xl font-bold underline'>Welcome to your Recipe app</h2>
+    <Navbar/>
+    <Routes>
+      <Route path='/' element = {<Home/>}/>
+      <Route path='/favourites' element = {<Favourites/>}/>
+      <Route path='/details/:id' element = {<Details/>}/>
+    </Routes>
     </>
   )
 }
