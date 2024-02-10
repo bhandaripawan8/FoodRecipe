@@ -8,7 +8,7 @@ export default function globalState({children}){
     const [searchParam, setsearchParam] = useState('');
     const [isLoading, setisLoading] = useState(false);
     const [resData, setresData] = useState([]);
-    const [recipeDetails, setrecipeDetails] = useState(null);
+    const [recipeDetails, setrecipeDetails] = useState({});
 
     async function handleSearch(e){
         e.preventDefault();

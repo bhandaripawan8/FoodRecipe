@@ -4,7 +4,7 @@ import Items from './Items';
 
 export default function Home() {
   const {isLoading, resData} = useContext(GlobalContext);
-  if (isLoading) return <div>Loading...please wiat!</div>
+  if (isLoading) return <div>Loading...please wait!</div>
 
   return (
     <div className = "py-8 container mx-auto flex flex-wrap justify-center gap-10">

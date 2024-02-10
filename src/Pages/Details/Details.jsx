@@ -21,19 +21,36 @@ export default function Details() {
       }
     }
     getRecipeDetails();
-  }, [id, setrecipeDetails]);
+  }, [id]);
 
   console.log(recipeDetails);
   return (
-    //  className='container mx-auto py-10 grid grid-cols-1 lg:grid-cols-2 gap-10'
-    <div  className='container mx-auto py-10 grid grid-cols-1 lg:grid-cols-2 gap-10'>
-      {/* className='row-start-2 lg:row-start-auto' */}
-      <div  className='row-start-2 lg:row-start-auto' >
-        <img src= {recipeDetails.recipe.image_url}alt={recipeDetails?.recipe?.title} className='w-full h-full object-cover block group-hover:scale-105 duration-300' />
-        {/* <img src={recipeDetails?.recipe?.source_URL} alt={recipeDetails?.recipe?.title} className='w-full h-full object-cover block group-hover:scale-105 duration-300'/> */}
-
-      </div>
-      <h2>{recipeDetails?.recipe?.title}</h2>
+<div className='container mx-auto py-10 grid grid-cols-1 lg:grid-cols-2 gap-10'>
+  <div>
+    <div>
+  <img src={recipeDetails?.recipe?.image_url} alt="" className='w-full h-full object-cover block group-hover:scale-105 duration-300 p-5'/>
     </div>
+  </div>
+  
+  <div className='flex flex-col'>
+    <h3 className='text-3xl font-semibold text-black'>{recipeDetails?.recipe?.title}</h3>
+    <p>{}</p>
+    <div>
+      <span className='text-2xl font-semibold text-black'>Ingredients</span>
+      <ul className='flex flex-col gap-2 mt-2'>
+        {
+          recipeDetails?.recipe?.ingredients.map((ingredient, index) =>
+            <li key={index}>
+              <span>{ingredient.quantity} {ingredient.unit}</span>
+              <span>{ingredient.description}</span>
+            </li>
+          )
+        }
+      </ul>
+    </div>
+    <button className='text-sm p-3 px-6 lg:px-8 rounded-lg uppercase font-medium tracking-wider inline-block shadow-mg bg-black text-white mt-3 lg:mt-0'>Add to your Favourite..</button>
+  </div>
+</div>
+
   );
-}
+}  
