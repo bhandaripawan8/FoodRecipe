@@ -8,6 +8,7 @@ export default function globalState({children}){
     const [searchParam, setsearchParam] = useState('');
     const [isLoading, setisLoading] = useState(false);
     const [resData, setresData] = useState([]);
+    const [recipeDetails, setrecipeDetails] = useState(null);
 
     async function handleSearch(e){
         e.preventDefault();
@@ -29,6 +30,6 @@ export default function globalState({children}){
     console.log(isLoading,resData);
 
     return (
-        <GlobalContext.Provider value={{searchParam, setsearchParam, handleSearch, isLoading, resData}}>{children}</GlobalContext.Provider>
+        <GlobalContext.Provider value={{searchParam, setsearchParam, handleSearch, isLoading, resData, recipeDetails, setrecipeDetails}}>{children}</GlobalContext.Provider>
     )
 }
