@@ -4,7 +4,7 @@ import { useParams } from 'react-router-dom';
 
 export default function Details() {
   const { id } = useParams();
-  const { recipeDetails, setrecipeDetails } = useContext(GlobalContext);
+  const { recipeDetails, setrecipeDetails, handleAddToFavourite } = useContext(GlobalContext);
 
   useEffect(() => {
     async function getRecipeDetails() {
@@ -34,7 +34,7 @@ export default function Details() {
   
   <div className='flex flex-col'>
     <h3 className='text-3xl font-semibold text-black'>{recipeDetails?.recipe?.title}</h3>
-    <p>{}</p>
+    <p>Cooking time: {recipeDetails?.recipe?.cooking_time}</p>
     <div>
       <span className='text-2xl font-semibold text-black'>Ingredients</span>
       <ul className='flex flex-col gap-2 mt-2'>
@@ -48,9 +48,8 @@ export default function Details() {
         }
       </ul>
     </div>
-    <button className='text-sm p-3 px-6 lg:px-8 rounded-lg uppercase font-medium tracking-wider inline-block shadow-mg bg-black text-white mt-3 lg:mt-0'>Add to your Favourite..</button>
+    <button onClick={()=> handleAddToFavourite(recipeDetails?.recipe)} className='mt-5 text-sm p-3 px-6 lg:px-8 rounded-lg uppercase font-medium tracking-wider inline-block shadow-mg bg-black text-white lg:mt-0'>Add to your Favourite..</button>
   </div>
 </div>
-
   );
 }  

@@ -4,11 +4,11 @@ import { useState } from "react";
 export const GlobalContext = createContext(null);
 
 export default function globalState({children}){
-
     const [searchParam, setsearchParam] = useState('');
     const [isLoading, setisLoading] = useState(false);
     const [resData, setresData] = useState([]);
     const [recipeDetails, setrecipeDetails] = useState({});
+    const [favourites, setfavourites] = useState([]);
 
     async function handleSearch(e){
         e.preventDefault();
@@ -27,9 +27,23 @@ export default function globalState({children}){
             setsearchParam('');
         }
     }
+
     console.log(isLoading,resData);
 
+    function handleAddToFavourite(getCurrentItem){
+        let cpyFavourites = [...favourites];
+        const index = cpyFavourites.findIndex(item => item.id === getCurrentItem.id)
+        if(index === -1){
+            cpyFavourites.push(getCurrentItem)
+        } else{
+            cpyFavourites.splice(index, 1); 
+        }
+        setfavourites(cpyFavourites);
+    }
+    console.log(handleAddToFavourite);
+    
+    console.log(favourites);
     return (
-        <GlobalContext.Provider value={{searchParam, setsearchParam, handleSearch, isLoading, resData, recipeDetails, setrecipeDetails}}>{children}</GlobalContext.Provider>
+        <GlobalContext.Provider value={{searchParam, setsearchParam, handleSearch, isLoading, resData, recipeDetails, setrecipeDetails, handleAddToFavourite, favourites}}>{children}</GlobalContext.Provider>
     )
 }
